@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
-        GIT_USER_NAME = "vinayvemula13"
+        GIT_USER_NAME = "VinayVemula-9295"
 
         SONAR_URL = "http://16.112.129.15:9000"
 

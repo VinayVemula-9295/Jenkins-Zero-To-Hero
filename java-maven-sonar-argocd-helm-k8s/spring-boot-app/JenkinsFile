@@ -117,7 +117,7 @@ pipeline {
                     sh """
 
                     git config --global user.email "vinayvemula13@outlook.com"
-                    git config --global user.name "vinayvemula13"
+                    git config --global user.name "VinayVemula-9295"
 
                     sed -i 's/replaceImageTag/${BUILD_NUMBER}/g' \
                     java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml

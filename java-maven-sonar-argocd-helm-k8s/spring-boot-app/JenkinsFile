@@ -107,6 +107,7 @@ pipeline {
         }
 
         stage('Update Deployment Manifest') {
+                agent any
     environment {
         GIT_REPO_NAME = "Deployment"
         GIT_USER_NAME = "VinayVemula-9295"

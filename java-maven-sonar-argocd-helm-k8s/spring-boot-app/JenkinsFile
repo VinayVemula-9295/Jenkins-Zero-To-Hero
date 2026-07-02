@@ -111,26 +111,21 @@ pipeline {
             agent any
 
             steps {
+    withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+        sh """
+            git config --global user.email "vinayvemula13@outlook.com"
+            git config --global user.name "VinayVemula-9295"
 
-                withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+            sed -i 's#image: vinayvemula13/ultimate-cicd:.*#image: vinayvemula13/ultimate-cicd:${BUILD_NUMBER}#g' \
+            java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
 
-                    sh """
+            git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
 
-                    git config --global user.email "vinayvemula13@outlook.com"
-                    git config --global user.name "VinayVemula-9295"
+            git commit -m "Update image tag to ${BUILD_NUMBER}" || true
 
-                    sed -i 's/replaceImageTag/${BUILD_NUMBER}/g' \
-                    java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
-
-                    git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
-
-                    git commit -m "Update image tag to ${BUILD_NUMBER}" || true
-
-                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git HEAD:main
-
-                    """
-
-                }
+            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git HEAD:main
+        """
+    }
 
             }
 

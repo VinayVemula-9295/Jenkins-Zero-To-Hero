@@ -5,7 +5,7 @@ pipeline {
         GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
         GIT_USER_NAME = "VinayVemula-9295"
 
-        SONAR_URL = "http://18.60.40.160:9000"
+        SONAR_URL = "http://18.60.156.212:9000"
 
         DOCKER_IMAGE = "vinayvemula13/ultimate-cicd:${BUILD_NUMBER}"
     }
